@@ -1,3 +1,4 @@
 Mattermost-LDAP/
 app/oauth/
+db/config_init.sh
 db/init_postgres.sh

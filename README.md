@@ -2,13 +2,13 @@
 
 ## Prerequirements
 
-- curl
+- git
 - docker
 - docker-compose
 
 ## Install
 
-Edit docker-compose.xml and mattermost config file(mattermost/config.json).
+Edit docker-compose.yml and mattermost config file(mattermost/config.json).
 
 ```bash
 ./init.sh

@@ -1,5 +1,6 @@
 FROM postgres:9.6.3
 
+COPY config_init.sh /docker-entrypoint-initdb.d/
 COPY init_postgres.sh /docker-entrypoint-initdb.d/
 
 ENV CLIENT_ID client_id

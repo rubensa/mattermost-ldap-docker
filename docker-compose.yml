@@ -8,12 +8,14 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      - POSTGRES_USER=mm-ldap
-      - POSTGRES_PASSWORD=mm-ldap
-      - POSTGRES_DB=mm-ldap
-      - CLIENT_ID=[client id]
-      - CLIENT_SECRET=[client secret]
-      - REDIRECT_URI
+      - DB_HOST=oauth-db
+      - DB_PORT=5432
+      - DB_NAME=oauth_db
+      - DB_USER=oauth
+      - DB_PASS=oauth_secure-pass
+      - CLIENT_ID=client_id
+      - CLIENT_SECRET=client_secret
+      - REDIRECT_URI=http://mattermost.company.com:8065/signup/gitlab/complete
     restart: always
   app:
     build: ./app
@@ -22,23 +24,23 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      - DB_HOST=postgres
+      - DB_HOST=oauth-db
       - DB_PORT=5432
-      - DB_NAME=mm-ldap
-      - DB_USER=mm-ldap
-      - DB_PASS=mm-ldap
-      - LDAP_HOST=[ldap hostname]
+      - DB_NAME=oauth_db
+      - DB_USER=oauth
+      - DB_PASS=oauth_secure-pass
+      - LDAP_HOST=ldap.company.com
       - LDAP_PORT=389
-      - LDAP_BIND_DN=[bind dn]
-      - LDAP_PASS=[bind password]
-      - LDAP_BASE_DN=[base dn]
+      - LDAP_BIND_DN
+      - LDAP_PASS
+      - LDAP_BASE_DN=ou=People,o=Company
       - LDAP_FILTER
-      - LDAP_SEARCH_ATTR=name
+      - LDAP_SEARCH_ATTR=uid
       - LDAP_MAIL_ATTR=mail
       - LDAP_NAME_ATTR=cn
       - LDAP_USERNAME_ATTR=name
     ports:
       - "80:80"
     links:
-      - db:postgres
+      - db
     restart: always
