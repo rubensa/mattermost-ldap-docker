@@ -29,6 +29,7 @@ services:
       - DB_NAME=oauth_db
       - DB_USER=oauth
       - DB_PASS=oauth_secure-pass
+      - DB_TYPE=pgsql
       - LDAP_HOST=ldap.company.com
       - LDAP_PORT=389
       - LDAP_BIND_DN
